@@ -449,7 +449,7 @@ public class ChatMultiActivity extends AppCompatActivity {
         Random random = new Random();
         int n = random.nextInt(300000);
         mChat = new Chat();
-        mChat.setId(mAuthProvider.getId() + mExtraIdUser);
+        mChat.setId(mChat.getId());
         mChat.setTimestamp(new Date().getTime());
         mChat.setIdNotification(n);
         ArrayList<String> ids = new ArrayList<>();
@@ -521,7 +521,7 @@ public class ChatMultiActivity extends AppCompatActivity {
             mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
             Intent intent = new Intent(ChatMultiActivity.this, ConfirmImageSendActivity.class);
             intent.putExtra("data", mReturnValues);
-            intent.putExtra("idChat", mExtraIdChat);
+            intent.putExtra("idChat", mChat.getId());
             intent.putExtra("idReceiver", mExtraIdUser);
 
             Gson gson = new Gson();
@@ -550,13 +550,13 @@ public class ChatMultiActivity extends AppCompatActivity {
                     mFileList.add(uri);
                 }
             }
-            mFilesProvider.saveFiles(ChatMultiActivity.this, mFileList, mExtraIdChat, mExtraIdUser);
+            mFilesProvider.saveFiles(ChatMultiActivity.this, mFileList, mChat.getId(), mExtraIdUser);
 
 
             // CREAMOS MODELO DE TIPO MESSAGE
             Message message = new Message();
             // CHAT AL CUAL PERTENECEN LO MENSAJES QUE CREAREMOS
-            message.setIdChat(mExtraIdChat);
+            message.setIdChat(mChat.getId());
             // NUESTRO USUARIO YA QUE ESTAMOS ESCRIBIENDO EL MENSAJE Y ENVIANDOLO
             message.setIdSender(mAuthProvider.getId());
             // USUARIO DE RECIBE EL MENSAJE
