@@ -161,14 +161,20 @@ public class CodeVerificationActivity extends AppCompatActivity {
                                     if (!username.equals("") && !image.equals("")) {
                                         goToHomeActivity();
                                     } else {
-                                        goToCompleteInfo();
+                                        Toast.makeText(CodeVerificationActivity.this, "Esta cuenta no existe", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(CodeVerificationActivity.this, MainActivity.class);
+                                        startActivity(intent);
                                     }
                                 } else {
-                                    goToCompleteInfo();
+                                    Toast.makeText(CodeVerificationActivity.this, "Esta cuenta no existe", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(CodeVerificationActivity.this, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             }
                             else {
-                                goToCompleteInfo();
+                                Toast.makeText(CodeVerificationActivity.this, "Esta cuenta no existe", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(CodeVerificationActivity.this, MainActivity.class);
+                                startActivity(intent);
                             }
 
                         }

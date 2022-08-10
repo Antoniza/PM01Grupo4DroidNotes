@@ -54,7 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
     UsersProvider mUsersProvider;
     AuthProvider mAuthProvider;
     ImageProvider mImageProvider;
-    TextView mTextViewUsername, mTextViewPhone, mTextViewInfo;
+    TextView mTextViewUsername, mTextViewPhone, mTextViewInfo, mTextViewEmail, mTextViewCareer, mTextViewAccount;
     CircleImageView mCircleImageProfile;
     ImageView mImageViewEditUsername;
     ImageView mImageViewEditInfo;
@@ -83,6 +83,9 @@ public class ProfileActivity extends AppCompatActivity {
         mTextViewUsername = findViewById(R.id.textViewUsername);
         mTextViewPhone = findViewById(R.id.textViewPhone);
         mTextViewInfo = findViewById(R.id.textViewInfo);
+        mTextViewEmail = findViewById(R.id.textViewEmail);
+        mTextViewCareer = findViewById(R.id.textViewCareer);
+        mTextViewAccount = findViewById(R.id.viewAcccount);
 
         mCircleImageProfile = findViewById(R.id.circleImageProfile);
         mImageViewEditUsername = findViewById(R.id.imageViewEditUsername);
@@ -157,6 +160,9 @@ public class ProfileActivity extends AppCompatActivity {
                         mTextViewUsername.setText(mUser.getUsername());
                         mTextViewPhone.setText(mUser.getPhone());
                         mTextViewInfo.setText(mUser.getInfo());
+                        mTextViewCareer.setText(mUser.getCareer());
+                        mTextViewAccount.setText(mUser.getAccount());
+                        mTextViewEmail.setText(mUser.getEmail());
 
                         if (mUser.getImage() != null) {
                             if (!mUser.getImage().equals("")) {
