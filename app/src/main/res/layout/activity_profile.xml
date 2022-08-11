@@ -212,7 +212,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/ic_phone_brown"
+                android:src="@drawable/ic_email_pin"
                 />
 
             <LinearLayout
@@ -257,7 +257,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/ic_phone_brown"
+                android:src="@drawable/ic_carrera_pin"
                 />
 
             <LinearLayout
