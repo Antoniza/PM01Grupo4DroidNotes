@@ -201,17 +201,17 @@ public class ChatMultiActivity extends AppCompatActivity {
             mUsersProvider.getUserInfo(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-               User user = documentSnapshot.toObject(User.class);
-               mReceivers.add(user);
-               mCount++;
+                    User user = documentSnapshot.toObject(User.class);
+                    mReceivers.add(user);
+                    mCount++;
 
 
-               if (mCount == mReceiversId.size()){
-                   for (User u: mReceivers){
-                       mReceiversName = mReceiversName + u.getUsername() + ", ";
-                   }
+                    if (mCount == mReceiversId.size()){
+                        for (User u: mReceivers){
+                            mReceiversName = mReceiversName + u.getUsername() + ", ";
+                        }
 
-               }
+                    }
                 }
             });
         }
@@ -449,7 +449,7 @@ public class ChatMultiActivity extends AppCompatActivity {
         Random random = new Random();
         int n = random.nextInt(300000);
         mChat = new Chat();
-        mChat.setId(mChat.getId());
+        mChat.setId(mAuthProvider.getId() + mExtraIdUser);
         mChat.setTimestamp(new Date().getTime());
         mChat.setIdNotification(n);
         ArrayList<String> ids = new ArrayList<>();
@@ -521,7 +521,7 @@ public class ChatMultiActivity extends AppCompatActivity {
             mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
             Intent intent = new Intent(ChatMultiActivity.this, ConfirmImageSendActivity.class);
             intent.putExtra("data", mReturnValues);
-            intent.putExtra("idChat", mChat.getId());
+            intent.putExtra("idChat", mExtraIdChat);
             intent.putExtra("idReceiver", mExtraIdUser);
 
             Gson gson = new Gson();

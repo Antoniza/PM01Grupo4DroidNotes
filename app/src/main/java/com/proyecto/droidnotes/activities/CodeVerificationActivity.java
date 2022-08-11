@@ -136,9 +136,6 @@ public class CodeVerificationActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 //validamos si el usuario inicio sesion
                 if (task.isSuccessful()) {
-                    final User user = new User();
-                    user.setId(mAuthProvider.getId());
-                    user.setPhone(mExtraPhone);
 
                     // Hece referencia al documento que tenemos en la BDD
                     mUsersProvider.getUserInfo(mAuthProvider.getId()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -146,13 +143,10 @@ public class CodeVerificationActivity extends AppCompatActivity {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             //Validamos si el documento existe o no en la BDD
                             if (!documentSnapshot.exists()) {
-                                // Permite conocer si la informacion se almaceno correctamente en la BDD
-                                mUsersProvider.create(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        goToCompleteInfo();
-                                    }
-                                });
+                                mAuthProvider.signOut();
+                                Toast.makeText(CodeVerificationActivity.this, "Esta cuenta no existe", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(CodeVerificationActivity.this, MainActivity.class);
+                                startActivity(intent);
                             } else if (documentSnapshot.contains("username") && documentSnapshot.contains("image")) {
                                 String username = documentSnapshot.getString("username");
                                 String image = documentSnapshot.getString("image");
@@ -164,17 +158,20 @@ public class CodeVerificationActivity extends AppCompatActivity {
                                         Toast.makeText(CodeVerificationActivity.this, "Esta cuenta no existe", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(CodeVerificationActivity.this, MainActivity.class);
                                         startActivity(intent);
+//                                        goToCompleteInfo();
                                     }
                                 } else {
                                     Toast.makeText(CodeVerificationActivity.this, "Esta cuenta no existe", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(CodeVerificationActivity.this, MainActivity.class);
                                     startActivity(intent);
+//                                    goToCompleteInfo();
                                 }
                             }
                             else {
                                 Toast.makeText(CodeVerificationActivity.this, "Esta cuenta no existe", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(CodeVerificationActivity.this, MainActivity.class);
                                 startActivity(intent);
+//                                goToCompleteInfo();
                             }
 
                         }
